@@ -14,10 +14,10 @@
             action="mrp.mrp_bom_form_action" sequence="20"/>
         <menuitem id="jamaah_meta_data_categ" name="Jamaah" parent="meta_data_categ" 
             action="account.res_partner_action_customer" sequence="30"/>
-        <!-- <menuitem id="airlines_meta_data_categ" name="Airlines" parent="meta_data_categ" 
-            action="account.res_partner_action_customer" sequence="40"/> -->
-        <menuitem id="vendor_meta_data_categ" name="Vendor" parent="meta_data_categ" 
-            action="account.res_partner_action_supplier" sequence="50"/>
+        <menuitem id="airlines_meta_data_categ" name="Airlines" parent="meta_data_categ" 
+            action="res_partner_airline_action" sequence="40"/>
+        <menuitem id="vendor_meta_data_categ" name="Hotel" parent="meta_data_categ" 
+            action="res_partner_hotel_action" sequence="50"/>
 
     </data>
 </odoo>

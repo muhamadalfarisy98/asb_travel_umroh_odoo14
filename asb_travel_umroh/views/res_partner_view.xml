@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- res.partner inherit form view -->
+        <record id="view_id" model="ir.ui.view">
+            <field name="name">res.partner.inherit.view.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <!-- Add your xpath here -->
+            <xpath expr="//group[@name='misc']" position="after">
+                <group name="travel" string="Travel">
+                    <field name="is_hotel"/>
+                    <field name="is_airline"/>
+                </group>
+            </xpath>
+            </field>
+        </record>
+
+        <record id="hotel_view_search" model="ir.ui.view">
+            <field name="name">res.partner.view.search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <filter string="Hotel" name="is_hotel" domain="[('is_hotel', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="airline_view_search" model="ir.ui.view">
+            <field name="name">res.partner.view.search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <filter string="Airline" name="is_airline" domain="[('is_airline', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- res.partner hotel action window -->
+        <record id="res_partner_hotel_action" model="ir.actions.act_window">
+            <field name="name">Hotel</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <!--filter-->
+            <field name="search_view_id" ref="hotel_view_search"/>
+            <!--otomatis bernilai true saat di create-->
+            <field name="context">{'default_is_hotel':True,'search_default_is_hotel':1}</field>
+        </record>
+
+        <!-- res.partner airline action window -->
+        <record id="res_partner_airline_action" model="ir.actions.act_window">
+            <field name="name">Airlines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <!--filter-->
+            <field name="search_view_id" ref="airline_view_search"/>
+            <!--otomatis bernilai true saat di create-->
+            <field name="context">{'default_is_airline':True,'search_default_is_airline':1}</field>
+        </record>
+
+        
+    </data>
+</odoo>

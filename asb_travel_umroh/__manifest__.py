@@ -3,8 +3,7 @@
     'name': "Travel Umroh",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Tugas Besar Design Addons for Travel Umroh""",
 
     'description': """
         Long description of module's purpose
@@ -20,14 +19,14 @@
     'version': '14.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account','product','stock','mrp','sale','purchase'],
+    'depends': ['base','contacts','account','product','stock','mrp','sale','purchase'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-
+        'views/res_partner_view.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
