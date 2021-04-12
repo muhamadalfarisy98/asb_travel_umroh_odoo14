@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_asb_travel_umroh_asb_travel_umroh,asb_travel_umroh.asb_travel_umroh,model_asb_travel_umroh_asb_travel_umroh,base.group_user,1,1,1,1
