@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Menu ROOT -->
+        <menuitem name="Travel Umroh" id="asb_travel_umroh.menu_travel_umroh_root" 
+            web_icon="asb_travel_umroh,static/description/icon.png"/>
+
+        <!-- MENU METADATA -->
+        <menuitem id="meta_data_categ" name="Meta Data" parent="asb_travel_umroh.menu_travel_umroh_root" 
+            sequence="10"/>
+        <menuitem id="product_meta_data_categ" name="Product" parent="meta_data_categ" 
+            action="sale.product_template_action" sequence="10"/>
+        <menuitem id="paket_product_meta_data_categ" name="Paket Product" parent="meta_data_categ" 
+            action="mrp.mrp_bom_form_action" sequence="20"/>
+        <menuitem id="jamaah_meta_data_categ" name="Jamaah" parent="meta_data_categ" 
+            action="account.res_partner_action_customer" sequence="30"/>
+        <!-- <menuitem id="airlines_meta_data_categ" name="Airlines" parent="meta_data_categ" 
+            action="account.res_partner_action_customer" sequence="40"/> -->
+        <menuitem id="vendor_meta_data_categ" name="Vendor" parent="meta_data_categ" 
+            action="account.res_partner_action_supplier" sequence="50"/>
+
+    </data>
+</odoo>
