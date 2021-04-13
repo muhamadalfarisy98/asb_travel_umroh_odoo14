@@ -19,5 +19,10 @@
         <menuitem id="vendor_meta_data_categ" name="Hotel" parent="meta_data_categ" 
             action="res_partner_hotel_action" sequence="50"/>
 
+        <!-- MENU TRANSACTION -->
+        <menuitem id="transaksi_categ" name="Transaction" parent="asb_travel_umroh.menu_travel_umroh_root" 
+            sequence="20"/>
+        <menuitem id="travel_packages_transaksi_categ" name="Travel Packages" parent="transaksi_categ" 
+            action="paket_perjalanan_action" sequence="10"/>
     </data>
 </odoo>

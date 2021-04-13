@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_asb_travel_umroh_asb_travel_umroh,asb_travel_umroh.asb_travel_umroh,model_asb_travel_umroh_asb_travel_umroh,base.group_user,1,1,1,1
+access_asb_travel_umroh_paket_perjalanan_all,asb_travel_umroh.paket_perjalanan all,model_paket_perjalanan,,1,1,1,1
+access_asb_travel_umroh_paket_hotel_line_all,asb_travel_umroh.paket_hotel_line all,model_paket_hotel_line,,1,1,1,1
+access_asb_travel_umroh_paket_pesawat_line_all,asb_travel_umroh.paket_pesawat_line all,model_paket_pesawat_line,,1,1,1,1
+access_asb_travel_umroh_paket_acara_line_all,asb_travel_umroh.paket_acara_line all,model_paket_acara_line,,1,1,1,1
+access_asb_travel_umroh_hpp_line_all,asb_travel_umroh.hpp_line all,model_hpp_line,,1,1,1,1

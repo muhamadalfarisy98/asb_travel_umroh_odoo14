@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequences for subject.order -->
+        <record id="seq_paket_perjalanan" model="ir.sequence">
+            <field name="name">Paket Perjalanan sequence</field>
+            <field name="code">paket.perjalanan.sequence</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">PP/%(month)s/%(y)s/</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+</odoo>

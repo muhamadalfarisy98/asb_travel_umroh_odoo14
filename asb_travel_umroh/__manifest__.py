@@ -10,7 +10,7 @@
     """,
 
     'author': "PT. Arkana Solusi Bisnis , muhamadalfarisy98@gmail.com",
-    'website': "http://www.yourcompany.com",
+    'website': "http://www.arkana.co.id",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -19,15 +19,17 @@
     'version': '14.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','contacts','account','product','stock','mrp','sale','purchase'],
+    'depends': ['base','contacts','account','product','stock','mrp','sale','purchase','l10n_id'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+
         'views/res_partner_view.xml',
+        'views/paket_perjalanan_view.xml',
         'views/menu.xml',
+
+        'data/data_ir_sequence.xml',
     ],
     # only loaded in demonstration mode
     'qweb': [

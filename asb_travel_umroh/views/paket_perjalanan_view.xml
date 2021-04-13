@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- paket.perjalanan form view -->
+        <record id="paket_perjalanan_view_form" model="ir.ui.view">
+            <field name="name">Travel Packages</field>
+            <field name="model">paket.perjalanan</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="/" attrs="{'invisible': [('name','!=','New')]}" />
+                            <h1><field name="name" attrs="{'invisible': [('name','=','New')]}" /></h1>
+                        </div>
+                        <group name="new_form1" string="Informations">
+                            <group>
+                                <field name="departure_date"/>
+                            </group>
+                            <group>
+                                <field name="return_date"/>
+                            </group>
+                        </group>
+
+                        <group name="new_form2" string="Product">
+                            <group>
+                                <field name="product_id"/>
+                            </group>
+                            <group>
+                                <field name="product_tmpl_id"/>
+                            </group>
+                        </group>
+
+                        <group name="new_form3" string="Seats">
+                            <group>
+                                <field name="quota"/>
+                                <field name="remaining_seats"/>
+                            </group>
+                            <group>
+                                <field name="quota_progress" widget="progressbar"/>
+                            </group>
+                        </group>
+                        <notebook>     
+                            <page string="Hotel Lines" name="hotel_lines">
+                                <field name="paket_hotel_line">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="city"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Airline Lines" name="airline_lines">
+                                <field name="paket_pesawat_line">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="departure_date"/>
+                                        <field name="departure_city"/>
+                                        <field name="arrival_city"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Schedule Lines" name="schedule_lines">
+                                <field name="paket_acara_line">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="HPP Lines" name="hpp_lines">
+                                <field name="hpp_line">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="product_qty"/>
+                                        <field name="price"/>
+                                        <field name="subtotal"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <field name="note" placeholder="Notes"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- paket.perjalanan tree view -->
+        <record id="paket_perjalanan_view_tree" model="ir.ui.view">
+            <field name="name">paket.perjalanan.view.tree</field>
+            <field name="model">paket.perjalanan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="departure_date"/>
+                    <field name="return_date"/>
+                    <field name="quota"/>
+                    <field name="quota_progress"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- paket.perjalanan action window -->
+        <record id="paket_perjalanan_action" model="ir.actions.act_window">
+            <field name="name">Travel Packages</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">paket.perjalanan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>
