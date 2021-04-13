@@ -115,9 +115,21 @@ class HppLine(models.Model):
     product_id = fields.Many2one(comodel_name='product.product', string='Product')
     product_qty = fields.Integer(string='Quantity')
     price = fields.Float(string='Price')
-    subtotal = fields.Float(string='Subtotal')
+    subtotal = fields.Float(string='Subtotal',compute='_get_subtotal')
     paket_perjalanan_id = fields.Many2one(comodel_name='paket.perjalanan', string='Paket perjalanan')
     
+    @api.depends('price','product_qty')
+    def _get_subtotal(self):
+        for r in self:
+            if r.price==0:
+                r.subtotal=0
+            else:
+                r.subtotal=r.price*r.product_qty
+
+    @api.onchange('price')
+    def _onchange_price(self):
+        if self.price<0:
+            raise ValidationError('Tidak bisa kurang dari 0')
     
     
     
