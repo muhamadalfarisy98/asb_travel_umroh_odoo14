@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="asb_travel_umroh.paket_perjalanan" model="ir.actions.report">
+		<field name="name">Manifest</field>
+		<field name="model">paket.perjalanan</field>
+		<field name="report_type">xlsx</field>
+		<field name="report_name">asb_travel_umroh.paket_perjalanan</field>
+		<field name="report_file">asb_travel_umroh.paket_perjalanan</field>
+		<field name="print_report_name">'Manifest Jamaah'</field>
+	</record> 
+</odoo>

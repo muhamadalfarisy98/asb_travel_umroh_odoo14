@@ -19,7 +19,7 @@
     'version': '14.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','contacts','account','product','stock','mrp','sale','purchase','l10n_id'],
+    'depends': ['base','contacts','account','product','stock','mrp','sale','purchase','l10n_id','report_xlsx',],
 
     # always loaded
     'data': [
@@ -30,6 +30,8 @@
         'views/paket_perjalanan_view.xml',
         'views/sale_order_view.xml',
         'views/menu.xml',
+
+        'report/report.xml',
 
         'data/data_ir_sequence.xml',
     ],

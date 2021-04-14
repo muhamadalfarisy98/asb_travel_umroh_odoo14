@@ -135,6 +135,10 @@ class PaketPerjalanan(models.Model):
                 lines.append((0,0,vals))
             self.paket_peserta_line=lines
 
+    def button_cetak_manifest(self):
+        if self._context.get('manifest_report'):
+            return self.env.ref('asb_travel_umroh.paket_perjalanan').report_action(self.ids, config=False)
+
 class PaketHotelLine(models.Model):
     _name = 'paket.hotel.line'
     _description = 'Paket Hotel Line'
@@ -177,6 +181,7 @@ class HppLine(models.Model):
     price_subtotal = fields.Float(string='Price')
     subtotal = fields.Float(string='Subtotal',compute='_get_subtotal',store=True,readonly=True)
     paket_perjalanan_id = fields.Many2one(comodel_name='paket.perjalanan', string='Paket perjalanan')
+    uom_id = fields.Many2one(comodel_name='uom.uom', string='UoM')
     
 
     @api.depends('price_subtotal','product_qty')
