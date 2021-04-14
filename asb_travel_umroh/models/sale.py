@@ -17,7 +17,16 @@ class SaleOrder(models.Model):
                 vals={
                         'product_id':line.id,
                         'name':line.name,
+                        'product_uom':1
                     }
                 lines.append((0,0,vals))
                 r.order_line=lines
                 
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    @api.model
+    def create(self,vals):
+        res=super(SaleOrderLine,self).create(vals)
+        return res
