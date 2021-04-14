@@ -1,6 +1,6 @@
 from odoo import api, fields, models
 from odoo.exceptions import UserError,ValidationError
-
+from datetime import date
 
 class PaketPerjalanan(models.Model):
     _name = 'paket.perjalanan'
@@ -187,27 +187,27 @@ class PaketPesertaLine(models.Model):
     paket_perjalanan_id = fields.Many2one(comodel_name='paket.perjalanan', string='Paket perjalanan')
     jamaah_id = fields.Many2one(comodel_name='res.partner', string='Jamaah',
         domain="[('is_customer', '=', True)]")
-    # Personal
-    # ## related
-    
-    # no_ktp = fields.Char(string='KTP No',related='jamaah_id.no_ktp',readonly=True)
-    # birthdate = fields.Date(string='Date of Birth',related='jamaah_id.birthdate',readonly=True)
-    # place_of_birth = fields.Char(string='Place of Birth',related='jamaah_id.place_of_birth',readonly=True)
-    # title_id = fields.Many2one(comodel_name='res.partner.title', string='Title',related='jamaah_id.title',readonly=True)
-    # non-related
     room_type = fields.Selection(string='Room Type', help='Paket kamar',required=True,
         selection=[('quad', 'Quad'), ('double', 'Double'),('triple', 'Triple')],default='quad')
-    # age = fields.Integer(string='Age',compute='_get_age_jamaah',store=True)
-    # mahram_ids = fields.Many2many(comodel_name='res.partner', string='Mahram',domain="[('is_customer', '=', True)]")
-    
-    # Passport
-    #Passport information
-    # no_passport = fields.Char(string='Passport No',related='jamaah_id.no_passport',readonly=True)
-    # date_expired = fields.Date(string='Date of Expired',readonly=True)
-    # date_issued = fields.Date(string='Date Issued',readonly=True)
-    # name_passport = fields.Char(string='Passport Name',readonly=True)
-    # imigrasi = fields.Char(string='Imigrasi',readonly=True)
+    age = fields.Integer(string='Age',compute='_get_age_jamaah',store=True)
+    mahram_ids = fields.Many2many(comodel_name='res.partner', string='Mahram',
+        domain="[('is_customer', '=', True)]")
     note = fields.Text(string='Notes')
+
+    @api.depends('birthdate')
+    def _get_age_jamaah(self):
+        '''Method to calculate age'''
+        current_dt = date.today()
+        for rec in self:
+            if rec.birthdate:
+                start = rec.birthdate
+                age_calc = ((current_dt - start).days / 365)
+                # Age should be greater than 0
+                if age_calc > 0.0:
+                    rec.age = age_calc
+            else:
+                rec.age = 0
+
     
     
 

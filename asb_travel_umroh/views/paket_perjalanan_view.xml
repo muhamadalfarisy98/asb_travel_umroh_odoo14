@@ -155,8 +155,8 @@
                             <group>
                                 <field name="title" readonly="1"/>
                                 <field name="birthdate" readonly="1"/> 
-                                <!-- <field name="age"/> -->
-                                <!-- <field name="mahram"/> -->
+                                <field name="age"/>
+                                <field name="mahram_ids" widget="many2many_tags"/>
                             </group>
                         </group>
                         <group name="passport_info" string="Passport">
