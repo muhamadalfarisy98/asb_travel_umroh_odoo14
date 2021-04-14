@@ -128,6 +128,9 @@ class PaketPerjalanan(models.Model):
             for line in so_ids.paket_peserta_line:
                 vals={
                     'jamaah_id':line.jamaah_id.id,
+                    'room_type':line.room_type,
+                    'mahram_ids':line.mahram_ids.ids,
+                    'note':line.note,
                 }
                 lines.append((0,0,vals))
             self.paket_peserta_line=lines
