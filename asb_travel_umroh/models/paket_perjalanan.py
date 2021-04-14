@@ -185,6 +185,7 @@ class PaketPesertaLine(models.Model):
     _inherits = {'res.partner': 'jamaah_id'}
 
     paket_perjalanan_id = fields.Many2one(comodel_name='paket.perjalanan', string='Paket perjalanan')
+    order_id = fields.Many2one(comodel_name='sale.order', string='Sale order')
     jamaah_id = fields.Many2one(comodel_name='res.partner', string='Jamaah',
         domain="[('is_customer', '=', True)]")
     room_type = fields.Selection(string='Room Type', help='Paket kamar',required=True,

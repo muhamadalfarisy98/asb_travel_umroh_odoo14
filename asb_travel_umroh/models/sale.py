@@ -6,7 +6,9 @@ class SaleOrder(models.Model):
 
     paket_perjalanan_id = fields.Many2one(comodel_name='paket.perjalanan', 
         string='Travel Package')
-    
+    paket_peserta_line = fields.One2many(comodel_name='paket.peserta.line', inverse_name='order_id', 
+        string='Manifest')
+
     @api.onchange('paket_perjalanan_id')
     def _onchange_product_tmpl_id(self):
         for r in self:
