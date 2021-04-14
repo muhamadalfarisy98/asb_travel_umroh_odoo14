@@ -139,6 +139,48 @@ class PaketPerjalanan(models.Model):
         if self._context.get('manifest_report'):
             return self.env.ref('asb_travel_umroh.paket_perjalanan').report_action(self.ids, config=False)
 
+    def get_report_manifest_jamaah_data(self):
+        self.flush()
+        if self.paket_peserta_line:
+            ids=tuple([x.id for x in self.paket_peserta_line])
+            if len(ids)>1:
+                where_query='WHERE ppl.id in {}'.format(ids)
+            else:
+                where_query='WHERE ppl.id = %s' %ids
+        else:
+            where_query=''
+        query = """
+            SELECT
+                ppl.id
+            FROM
+                paket_peserta_line ppl
+            %s
+            """ %where_query
+        self.env.cr.execute(query)
+        result = [x[0] for x in self._cr.fetchall()]
+        result = self.env['paket.peserta.line'].sudo().browse(result)
+        data = []
+        num=1
+        for ppl in result:
+            data.append((
+                num,
+                ppl.jamaah_id.gender or '',
+                ppl.title or '', #2
+                ppl.jamaah_id.name, #3
+                ppl.place_of_birth, #4
+                ppl.birthdate, #5
+                ppl.no_passport,
+                ppl.date_issued,#7
+                ppl.date_expired,# 8
+                ppl.imigrasi,
+                ppl.mahram_ids,#10
+                ppl.age,
+                ppl.no_ktp,#12
+                ppl.room_type, #13
+            ))
+            num+=1
+        return data
+
 class PaketHotelLine(models.Model):
     _name = 'paket.hotel.line'
     _description = 'Paket Hotel Line'
