@@ -4,3 +4,4 @@ access_asb_travel_umroh_paket_hotel_line_all,asb_travel_umroh.paket_hotel_line a
 access_asb_travel_umroh_paket_pesawat_line_all,asb_travel_umroh.paket_pesawat_line all,model_paket_pesawat_line,,1,1,1,1
 access_asb_travel_umroh_paket_acara_line_all,asb_travel_umroh.paket_acara_line all,model_paket_acara_line,,1,1,1,1
 access_asb_travel_umroh_hpp_line_all,asb_travel_umroh.hpp_line all,model_hpp_line,,1,1,1,1
+access_asb_travel_umroh_paket_peserta_line_all,asb_travel_umroh.paket_peserta_line all,model_paket_peserta_line,,1,1,1,1

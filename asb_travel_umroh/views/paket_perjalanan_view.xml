@@ -75,6 +75,14 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Manifest" name="manifest_lines">
+                                <field name="paket_peserta_line">
+                                    <tree >
+                                        <field name="title"/>
+                                        <field name="gender"/>
+                                    </tree>
+                                </field>
+                            </page>
                             <page string="HPP Lines" name="hpp_lines">
                                 <field name="hpp_line">
                                     <tree editable="bottom">
@@ -129,5 +137,61 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+
+        <!-- paket.peserta.line form view -->
+        <record id="paket_peserta_line_view_form" model="ir.ui.view">
+            <field name="name">Create Passport Lines</field>
+            <field name="model">paket.peserta.line</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group name="personal" string="Personal">
+                            <group>
+                                <field name="jamaah_id"/>
+                                <field name="no_ktp" readonly="1"/>
+                                <field name="place_of_birth" readonly="1"/>
+                                <field name="room_type"/>
+                            </group>
+                            <group>
+                                <field name="title" readonly="1"/>
+                                <field name="birthdate" readonly="1"/> 
+                                <!-- <field name="age"/> -->
+                                <!-- <field name="mahram"/> -->
+                            </group>
+                        </group>
+                        <group name="passport_info" string="Passport">
+                            <group>
+                                <field name="no_passport" readonly="1"/>
+                                <field name="date_issued" readonly="1"/>
+                                <field name="imigrasi" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="name_passport" readonly="1"/>
+                                <field name="date_expired" readonly="1"/>
+                                <field name="note"/>
+                            </group>
+                        </group>
+                        <group name="scan_doc" string="Scan Document">
+                            <group>
+                                <field name="passport"/>
+                                <field name="buku_nikah"/>
+                            </group>
+                            <group>
+                                <field name="ktp"/>
+                                <field name="kartu_keluarga"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- paket.peserta.line action window -->
+        <record id="paket_peserta_line_action" model="ir.actions.act_window">
+            <field name="name">paket.peserta.line.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">paket.peserta.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
     </data>
 </odoo>
