@@ -8,10 +8,16 @@ class PaketPerjalanan(models.Model):
 
     name = fields.Char(string='', required=True, copy=False, readonly=True,
                             default='New')
+    company_id = fields.Many2one('res.company', string='Company', 
+        default=lambda self: self.env.user.company_id)
+    currency_id = fields.Many2one('res.currency', string='Currency', 
+        related='company_id.currency_id')
     departure_date = fields.Date(string='Departure Date',required=True)
     return_date = fields.Date(string='Return Date',required=True)
-    product_tmpl_id = fields.Many2one(comodel_name='mrp.bom', string='Package',required=True)
-    product_id = fields.Many2one(comodel_name='product.template', string='Sale',required=True)
+    product_tmpl_id = fields.Many2one(comodel_name='mrp.bom', 
+        string='Package',required=True)
+    product_id = fields.Many2one(comodel_name='product.template', 
+        string='Sale',required=True)
     quota = fields.Integer(string='Quota')
     remaining_seats = fields.Integer(string='Remaining Seats',
         compute='_get_remaining_seats',store=True,readonly=True)
@@ -28,9 +34,10 @@ class PaketPerjalanan(models.Model):
     hpp_line = fields.One2many(comodel_name='hpp.line', inverse_name='paket_perjalanan_id', string='hpp Lines')
     
     note= fields.Text(string='Note')
-    amount_total = fields.Float(string='Total', store=True, readonly=True, 
+    amount_total = fields.Monetary(string='Total', store=True, readonly=True, 
         compute='_amount_all',)
-
+    
+    
     @api.model
     def create(self, vals):
         """
@@ -74,32 +81,42 @@ class PaketPerjalanan(models.Model):
     @api.depends('hpp_line.subtotal','hpp_line')
     def _amount_all(self):
         """
-        Compute the total amounts of the SO.
+        Compute the total amounts.
         """
         for r in self:
             amount_count =0.0
             for line in r.hpp_line:
                 amount_count += line.subtotal
-            # line.update({
-            #     'amount_untaxed': amount_untaxed,
-            #     'amount_tax': amount_tax,
-            #     'amount_total': amount_untaxed + amount_tax,
-            # })
             r.amount_total=amount_count
 
     def name_get(self):
         '''Method to display name and code'''
-        return [(rec.id, rec.name + '# '+rec.product_id.name) for rec in self]
+        return [(r.id, r.name + '# '+r.product_id.name) for r in self]
 
+    def button_action_confirm(self):
+        for r in self:
+            r.write({'state': 'confirmed'})
+
+    def button_action_set_to_draft(self):
+        for r in self:
+            r.write({'state': 'draft'})
+
+    def button_action_done(self):
+        for r in self:
+            r.write({'state': 'done'})
+
+    def button_update_jamaah(self):
+        for r in self:
+            return True
 
 class PaketHotelLine(models.Model):
     _name = 'paket.hotel.line'
     _description = 'Paket Hotel Line'
 
     name = fields.Many2one(comodel_name='res.partner', string='Hotel',
-        domain="[('is_hotel','=',True)]")
-    start_date = fields.Date(string='Start Date')
-    end_date = fields.Date(string='End Date')
+        domain="[('is_hotel','=',True)]",required=True)
+    start_date = fields.Date(string='Start Date',required=True)
+    end_date = fields.Date(string='End Date',required=True)
     city = fields.Char(string='City',related='name.city',readonly=1)
     paket_perjalanan_id = fields.Many2one(comodel_name='paket.perjalanan', 
         string='Paket Perjalanan')
