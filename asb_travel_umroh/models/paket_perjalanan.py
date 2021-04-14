@@ -14,7 +14,7 @@ class PaketPerjalanan(models.Model):
     product_id = fields.Many2one(comodel_name='product.template', string='Sale',required=True)
     quota = fields.Integer(string='Quota')
     remaining_seats = fields.Integer(string='Remaining Seats',
-        compute='_get_remaining_seats')
+        compute='_get_remaining_seats',store=True,readonly=True)
     quota_progress = fields.Float(string='Quota Progress')
     state = fields.Selection(string='Status', selection=[
         ('draft', 'Draft'), ('confirmed', 'Confirmed'),
@@ -28,7 +28,8 @@ class PaketPerjalanan(models.Model):
     hpp_line = fields.One2many(comodel_name='hpp.line', inverse_name='paket_perjalanan_id', string='hpp Lines')
     
     note= fields.Text(string='Note')
-    
+    amount_total = fields.Float(string='Total', store=True, readonly=True, 
+        compute='_amount_all',)
 
     @api.model
     def create(self, vals):
@@ -60,7 +61,7 @@ class PaketPerjalanan(models.Model):
     def _onchange_product_tmpl_id(self):
         for r in self:
             if r.product_tmpl_id:
-            # removes all existing (previous) value from list
+                # removes all existing (previous) value from list
                 lines=[(5,0,0)]
                 for line in self.product_tmpl_id.bom_line_ids:
                     vals={
@@ -69,6 +70,22 @@ class PaketPerjalanan(models.Model):
                     }
                     lines.append((0,0,vals))
                 r.hpp_line=lines
+
+    @api.depends('hpp_line.subtotal','hpp_line')
+    def _amount_all(self):
+        """
+        Compute the total amounts of the SO.
+        """
+        for r in self:
+            amount_count =0.0
+            for line in r.hpp_line:
+                amount_count += line.subtotal
+            # line.update({
+            #     'amount_untaxed': amount_untaxed,
+            #     'amount_tax': amount_tax,
+            #     'amount_total': amount_untaxed + amount_tax,
+            # })
+            r.amount_total=amount_count
 
     def name_get(self):
         '''Method to display name and code'''
@@ -114,21 +131,23 @@ class HppLine(models.Model):
 
     product_id = fields.Many2one(comodel_name='product.product', string='Product')
     product_qty = fields.Integer(string='Quantity')
-    price = fields.Float(string='Price')
-    subtotal = fields.Float(string='Subtotal',compute='_get_subtotal')
+    price_subtotal = fields.Float(string='Price')
+    subtotal = fields.Float(string='Subtotal',compute='_get_subtotal',store=True,readonly=True)
     paket_perjalanan_id = fields.Many2one(comodel_name='paket.perjalanan', string='Paket perjalanan')
     
-    @api.depends('price','product_qty')
+
+    @api.depends('price_subtotal','product_qty')
     def _get_subtotal(self):
         for r in self:
-            if r.price==0:
+            if r.price_subtotal==0:
                 r.subtotal=0
             else:
-                r.subtotal=r.price*r.product_qty
+                r.subtotal=r.price_subtotal*r.product_qty
 
-    @api.onchange('price')
-    def _onchange_price(self):
-        if self.price<0:
+
+    @api.onchange('price_subtotal')
+    def _onchange_price_subtotal(self):
+        if self.price_subtotal<0:
             raise ValidationError('Tidak bisa kurang dari 0')
     
     
