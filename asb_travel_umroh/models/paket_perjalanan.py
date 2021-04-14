@@ -177,6 +177,40 @@ class PaketPerjalanan(models.Model):
                 ppl.age,
                 ppl.no_ktp,#12
                 ppl.room_type, #13
+                ppl.jamaah_id.street or '', #14
+            ))
+            num+=1
+        return data
+
+    def get_report_airlines_data(self):
+        self.flush()
+        if self.paket_pesawat_line:
+            ids=tuple([x.id for x in self.paket_pesawat_line])
+            if len(ids)>1:
+                where_query='WHERE ppl.id in {}'.format(ids)
+            else:
+                where_query='WHERE ppl.id = %s' %ids
+        else:
+            where_query=''
+        query = """
+            SELECT
+                ppl.id
+            FROM
+                paket_pesawat_line ppl
+            %s
+            """ %where_query
+        self.env.cr.execute(query)
+        result = [x[0] for x in self._cr.fetchall()]
+        result = self.env['paket.pesawat.line'].sudo().browse(result)
+        data = []
+        num=1
+        for ppl in result:
+            data.append((
+                num,
+                ppl.name.name,
+                ppl.departure_date, #2
+                ppl.departure_city, #3
+                ppl.arrival_city, #4
             ))
             num+=1
         return data
