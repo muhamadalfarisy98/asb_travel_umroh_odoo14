@@ -28,6 +28,7 @@
 
         'views/res_partner_view.xml',
         'views/paket_perjalanan_view.xml',
+        'views/sale_view.xml',
         'views/menu.xml',
 
         'data/data_ir_sequence.xml',

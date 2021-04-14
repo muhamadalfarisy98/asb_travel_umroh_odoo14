@@ -24,5 +24,7 @@
             sequence="20"/>
         <menuitem id="travel_packages_transaksi_categ" name="Travel Packages" parent="transaksi_categ" 
             action="paket_perjalanan_action" sequence="10"/>
+        <menuitem id="sale_orders_transaksi_categ" name="Sale Orders" parent="transaksi_categ" 
+            action="sale.action_orders" sequence="20"/>
     </data>
 </odoo>
