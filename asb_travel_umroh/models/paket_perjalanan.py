@@ -67,7 +67,6 @@ class PaketPerjalanan(models.Model):
             else:
                 r.quota_progress=(len(r.paket_peserta_line)/ r.quota)*100
 
-
     @api.onchange('quota')
     def _onchange_quota(self):
         if self.quota<0:
@@ -118,8 +117,20 @@ class PaketPerjalanan(models.Model):
 
     def button_update_jamaah(self):
         '''Method to update manifest line by searching SO with same paket perjalanan id'''
-        for r in self:
-            return True
+        so_ids=self.env['sale.order'].sudo().search(
+            [
+                ('paket_perjalanan_id','=',self.id),
+            ]
+        )
+        if (so_ids and (len(so_ids.paket_peserta_line)>0) ):
+            # removes all existing (previous) value from list
+            lines=[(5,0,0)]
+            for line in so_ids.paket_peserta_line:
+                vals={
+                    'jamaah_id':line.jamaah_id.id,
+                }
+                lines.append((0,0,vals))
+            self.paket_peserta_line=lines
 
 class PaketHotelLine(models.Model):
     _name = 'paket.hotel.line'

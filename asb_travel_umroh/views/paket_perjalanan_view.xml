@@ -9,7 +9,7 @@
                 <form string="">
                     <header>
                         <button name="button_action_confirm" type="object" string="Confirm" groups="asb_travel_umroh.group_travel_umroh_manager" class="oe_highlight" states="draft"/>
-                        <button name="button_action_set_to_draft" type="object" string="Set to Draft" groups="asb_travel_umroh.group_travel_umroh_manager" class="btn-primary" states="confirmed"/>
+                        <button name="button_action_set_to_draft" type="object" string="Set to Draft" groups="asb_travel_umroh.group_travel_umroh_manager" class="btn-primary" states="confirmed,done"/>
                         <button name="button_action_done" type="object" string="Done" groups="asb_travel_umroh.group_travel_umroh_manager" class="oe_highlight" states="confirmed"/>
                         <button name="button_update_jamaah" type="object" string="Update Jamaah" groups="asb_travel_umroh.group_travel_umroh_manager" class="oe_highlight" states="confirmed"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
