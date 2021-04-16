@@ -9,12 +9,8 @@
         Long description of module's purpose
     """,
 
-    'author': "PT. Arkana Solusi Bisnis , muhamadalfarisy98@gmail.com",
+    'author': "PT. Arkana Solusi Bisnis , <muhamad alfarisy> muhamadalfarisy98@gmail.com",
     'website': "http://www.arkana.co.id",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
     'category': 'Uncategorized',
     'version': '14.0',
 
@@ -32,9 +28,11 @@
         'views/account_move_view.xml',
         'views/stock_picking_view.xml',
         'views/menu.xml',
+
         'report/report.xml',
         'report/customer_invoice_template.xml',
         'report/stock_picking_template.xml',
+
         'data/data_ir_sequence.xml',
     ],
     # only loaded in demonstration mode

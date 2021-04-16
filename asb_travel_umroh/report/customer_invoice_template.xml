@@ -58,7 +58,7 @@
                             <tbody>
                                 <tr t-foreach="doc.invoice_line_ids" t-as="line">
                                     <td style="border: 1px solid black;" class="text-left"><span t-field="line.product_id.name"/> </td>
-                                    <td style="border: 1px solid black;" class="text-center"><span t-field="line.quantity"/> </td>
+                                    <td style="border: 1px solid black;" class="text-center"><span t-esc="str(line.quantity)+' '+line.product_uom_id.name"/> </td>
                                     <td style="border: 1px solid black;" class="text-center"><span t-field="line.price_unit"/> </td>
                                     <td style="border: 1px solid black;" class="text-right"><span t-field="line.price_subtotal"/> </td>
                                 </tr>
