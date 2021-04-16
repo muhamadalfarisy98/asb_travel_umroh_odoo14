@@ -29,9 +29,10 @@
         'views/res_partner_view.xml',
         'views/paket_perjalanan_view.xml',
         'views/sale_order_view.xml',
+        'views/account_move_view.xml',
         'views/menu.xml',
-
         'report/report.xml',
+        'report/customer_invoice_template.xml',
 
         'data/data_ir_sequence.xml',
     ],

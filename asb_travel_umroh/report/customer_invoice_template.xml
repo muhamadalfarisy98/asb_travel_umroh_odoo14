@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+<template id="report_account_move_document">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    
+                    <h1 class="text-center"><strong>CUSTOMER INVOICES</strong></h1>
+                    <h2 > </h2>
+                    <h2 > </h2>
+                    <!-- <div class="col-8">
+                        <div class="row-2"> 
+                            <h1 class="text-center"><strong>CUSTOMER INVOICES</strong></h1>
+                        </div>
+                    </div> -->
+
+                    <div class="row mt64">
+                        <div class="col-2">
+                           Customer
+                        </div>
+                        <div class="col-5">
+                            : <span t-field="doc.partner_id.name"/>
+                        </div>
+                        <div class="col-2">
+                           No.
+                        </div>
+                        <div class="col-3">
+                            : <span t-field="doc.name"/>
+                        </div>
+                    </div>
+                    <div class="row mt64">
+                        <div class="col-2">
+                           Address
+                        </div>
+                        <div class="col-5">
+                            : <span t-field="doc.partner_id.street"/>
+                        </div>
+                        <div class="col-2">
+                           Date
+                        </div>
+                        <div class="col-3">
+                            : <span t-esc="doc.invoice_date.strftime('%d %B %Y')"/>
+                        </div>
+                    </div>
+                    <div class="row mt64">
+                        <div class="col-2">
+                            Phone
+                        </div>
+                        <div class="col-3">
+                            : <span t-field="doc.partner_id.phone"/>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row mt64">
+                        <div class="col-3">
+                            UNTUK PEMBAYARAN  
+                        </div>
+                        <div class="col-9">
+                            <div class="row-2">:<strong>  TAGIHAN YANG JATUH TEMPO TANGGAL</strong> <strong><span t-esc="doc.date_due.strftime('%d %B %Y')"/></strong></div>
+
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>TOTAL TAGIHAN DIVISI :</strong></td>
+                                    <td >
+                                        <strong><span t-esc="doc.total_amount"
+                                        t-options='{"widget": "monetary", "display_currency": doc.invoice_ids.currency_id}'/></strong>
+                                    </td>
+                                </tr>
+                                <tr class="border-black">
+                                    <td ><strong>GRAND TOTAL KWITANSI :</strong></td>
+                                    <td >
+                                        <strong><span t-esc="doc.total_amount"
+                                        t-options='{"widget": "monetary", "display_currency": doc.invoice_ids.currency_id}'/></strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                       
+                        <div class="row-6">TANGGAL CETAK :<span t-esc="doc.date.strftime('%d %B %Y')"/></div>
+                    </div> -->
+
+                    <!-- <div class="text-center" style="border: 1px solid black;"><b><strong>PERINCIAN</strong></b></div> -->
+
+                    <!-- <div class="row mt32">
+                        <div class="col-8" t-if="doc.invoice_ids.invoice_user_id">
+                            <strong>Nama Sales: </strong> 
+                            <tr t-foreach="doc.invoice_ids.invoice_user_id" t-as="line">
+                                <td><span t-field="line.name"/> </td>
+                            </tr>
+                        </div>
+                    </div> -->
+
+                    
+                    <table class="table table-strip table-border">
+                            <thead>
+                                <tr>
+                                    <th name="th_product" class="text-center" style="border: 1px solid black;"><strong>Product</strong></th>
+                                    <th name="th_qty" class="text-center" style="border: 1px solid black;"><strong>Qty (UoM)</strong></th>
+                                    <th name="th_price_unit" class="text-center" style="border: 1px solid black;"><strong>Price Unit</strong></th>
+                                    <th name="th_price_subtotal" class="text-center" style="border: 1px solid black;"><strong>Subtotal</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="doc.invoice_line_ids" t-as="line">
+                                    <td style="border: 1px solid black;" class="text-left"><span t-field="line.product_id.name"/> </td>
+                                    <td style="border: 1px solid black;" class="text-center"><span t-field="line.quantity"/> </td>
+                                    <td style="border: 1px solid black;" class="text-center"><span t-field="line.price_unit"/> </td>
+                                    <td style="border: 1px solid black;" class="text-right"><span t-field="line.price_subtotal"/> </td>
+                                </tr>
+                            </tbody>
+                    </table>
+
+                    <div class="text-left" style="border: 1px solid black;"><strong>PAYMENT</strong></div>
+                    <table class="table table-strip table-border">
+                        <thead>
+                            <tr>
+                                <th name="th_no" class="text-center" style="border: 1px solid black;"><strong>Method</strong></th>
+                                <th name="th_tanggal" class="text-center" style="border: 1px solid black;"><strong>Date</strong></th>
+                                <th name="th_faktur_penjualan" class="text-center" style="border: 1px solid black;"><strong>Amount</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr t-foreach="doc.get_payment_ids()" t-as="line">
+                                    <td style="border: 1px solid black;" class="text-left"><span t-field="line.journal_id.name"/> </td>
+                                    <td style="border: 1px solid black;" class="text-center"><span t-esc="line.date.strftime('%d %B %Y')"/> </td>
+                                    <td style="border: 1px solid black;" class="text-right"><span t-field="line.amount"/> </td>
+                                </tr>
+                                
+                                <th name="th_sisa" class="text-right" style="border: 1px solid black;"><strong>Sisa</strong></th>
+                                <!-- <td style="border: 1px solid black;" class="text-left"><span t-field="doc.name"/> </td> -->
+                                
+                        </tbody>
+                    </table>
+                    
+                    <!-- <div id="total" class="row justify-content-end">
+                        <div class="col-4">
+                            <table class="table table-sm">
+                                <tr class="border-black">
+                                    <td name="td_subtotal_label"><strong>Subtotal</strong></td>
+                                    <td class="text-right">
+                                        <span t-esc="doc.total_amount"
+                                        t-options='{"widget": "monetary", "display_currency": doc.invoice_ids.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div> -->
+                    <!-- <p>CATATAN</p> -->
+                    <!-- <div class="container">
+                        <div class="row">
+                            <div class="col-8"> 
+                                <div class="text-justify">1. MOHON PEMBAYARAN DI TRANSFER KE REKENING</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="text-center">HORMAT KAMI,</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-8">
+                            <div class="row-2"> 
+                                <div t-if="doc.company_id.partner_id.bank_ids">
+                                    NO REKENING : 
+                                    <tr t-foreach="doc.company_id.partner_id.bank_ids" t-as="line">
+                                        <td><span t-field="line.acc_number"/> </td>
+                                    </tr>
+                                </div>
+                                <div t-else="">
+                                    NO REKENING : 
+                                </div>
+                            </div>
+                            <div class="row-2"> 
+                                <div t-if="doc.company_id.partner_id.bank_ids">
+                                    BANK : 
+                                    <tr t-foreach="doc.company_id.partner_id.bank_ids" t-as="line">
+                                        <td><span t-field="line.bank_id.name"/> </td>
+                                    </tr>
+                                </div>
+                                <div t-else="">
+                                    BANK : 
+                                </div>
+                            </div>
+                            <div class="row-2"> 
+                                <div t-if="doc.company_id.partner_id.bank_ids">
+                                    NAMA REKENING : 
+                                    <span t-field="doc.company_id.partner_id.name"/>
+                                </div>
+                                <div t-else="">
+                                    NAMA REKENING : 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="text-justify">2. KWITANSI INI SAH DAN BERLAKU APABILA DANA PEMBAYARAN TELAH DITERIMA OLEH PERUSAHAAN KAMI.</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="text-justify">3. PEMBAYARAN DENGAN GIRO/CEK DIANGGAP LUNAS APABILA SUDAH DAPAT DIUANGANKAN OLEH PERUSAHAAN KAMI.</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="text-justify">4. IJIN PEMBUBUHAN BEA METERAI NO.SI-00021/SK/WPJ.05/KP.0803/2019.</div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div id="signature" class="row justify-content-end">
+                        <div class="col-4">
+                            <table class="table table-sm">
+                                <tr class="border-black">
+                                    <td name="td_subtotal_label" class="text-center"><strong>MANAJER</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div> -->
+
+                </div>
+            </t>   
+        </t>
+    </t>
+</template>
+</odoo>
