@@ -14,5 +14,4 @@ class AccountMove(models.Model):
                 ('ref','=',self.name)
             ]
         )
-        print(payment_ids)
         return payment_ids

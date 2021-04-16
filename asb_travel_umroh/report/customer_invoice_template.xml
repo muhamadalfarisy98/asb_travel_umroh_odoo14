@@ -65,9 +65,11 @@
                             </tbody>
                     </table>
 
-                    <div class="text-left" style="border: 1px solid black;"><strong>PAYMENT</strong></div>
                     <table class="table table-strip table-border">
                         <thead>
+                            <tr>
+                                <th name="th_pay" colspan="3" class="text-left" style="border: 1px solid black;"><strong>PAYMENT</strong></th>
+                            </tr>
                             <tr>
                                 <th name="th_no" class="text-center" style="border: 1px solid black;"><strong>Method</strong></th>
                                 <th name="th_tanggal" class="text-center" style="border: 1px solid black;"><strong>Date</strong></th>
