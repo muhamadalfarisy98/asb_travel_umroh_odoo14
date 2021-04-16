@@ -59,8 +59,8 @@
                             <tbody>
                                 <tr t-foreach="doc.move_ids_without_package" t-as="line">
                                     <td style="border: 2px solid black;" class="text-left"><span t-field="line.product_id.name"/> </td>
-                                    <td style="border: 2px solid black;" class="text-center"><span t-field="line.quantity_done"/> </td>
-                                    <td style="border: 2px solid black;" class="text-center"><span t-field="line.product_uom"/> </td>
+                                    <td style="border: 2px solid black;" class="text-right"><span t-field="line.quantity_done"/> </td>
+                                    <td style="border: 2px solid black;" class="text-right"><span t-field="line.product_uom"/> </td>
                                 </tr>
                             </tbody>
                     </table>

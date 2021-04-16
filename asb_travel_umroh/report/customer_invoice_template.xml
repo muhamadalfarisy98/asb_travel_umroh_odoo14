@@ -81,14 +81,34 @@
                                     <td style="border: 1px solid black;" class="text-right"><span t-field="line.amount"/> </td>
                                 </tr>
                                 <tr>
-                                    <div class="text-right" style="border: 1px solid black;">
-                                        <th><strong></strong></th>
-                                        <th class="text-right"><strong>Sisa:</strong></th>
-                                    </div>
+                                    <th colspan="2" style="border: 1px solid black;" class="text-right"><strong>Sisa:</strong></th>
                                     <td style="border: 1px solid black;" class="text-right"><span t-field="doc.amount_residual"/> </td>
                                 </tr>
                         </tbody>
                     </table>
+
+                    <center>
+                        <table width="25%" height="250px" style="border: 2px solid black;">
+                            <tr>
+                                <td width="100%" align="center" height="30">
+                                    <strong>
+                                        Finance
+                                    </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="100px"></td>
+                            </tr>
+                            <tr>
+                                <td align="center" height="30px">
+                                    <strong>
+                                        <span t-esc="doc.env.user.name or 'Administrator' " />
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+
                 </div>
             </t>   
         </t>
