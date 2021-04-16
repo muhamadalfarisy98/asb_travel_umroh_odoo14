@@ -285,7 +285,7 @@ class PaketPesertaLine(models.Model):
     age = fields.Integer(string='Age',compute='_get_age_jamaah',store=True)
     mahram_ids = fields.Many2many(comodel_name='res.partner', string='Mahram',
         domain="[('is_customer', '=', True)]")
-    note = fields.Text(string='Notes')
+    note = fields.Text(string='Note')
 
     @api.depends('birthdate')
     def _get_age_jamaah(self):

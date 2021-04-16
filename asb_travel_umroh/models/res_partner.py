@@ -4,7 +4,7 @@ from odoo import api, fields, models
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    lang_id = fields.Many2one(comodel_name='res.lang', string='Language')
+    # lang_id = fields.Many2one(comodel_name='res.lang', string='Language')
     is_hotel = fields.Boolean(string='Is a Hotel')
     is_airline = fields.Boolean(string='Is a Airline')
     is_customer = fields.Boolean(string='Is a Customer')

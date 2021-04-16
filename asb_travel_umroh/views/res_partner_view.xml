@@ -8,9 +8,6 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <!-- Add your xpath here -->
-            <xpath expr="//group/field[@name='title']" position="after">
-                <field name="lang_id"/>
-            </xpath>
             <xpath expr="//group/field[@name='property_supplier_payment_term_id']" position="before">
                 <field name="is_vendor"/>
             </xpath>
@@ -96,6 +93,7 @@
             <field name="name">customer search</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
+                <!-- <field name="name"/> -->
                 <search string="Search Description">
                     <filter string="Customer" name="is_customer" domain="[('is_customer', '=', True)]"/>
                 </search>

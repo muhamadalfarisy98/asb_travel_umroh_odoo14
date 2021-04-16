@@ -30,10 +30,11 @@
         'views/paket_perjalanan_view.xml',
         'views/sale_order_view.xml',
         'views/account_move_view.xml',
+        'views/stock_picking_view.xml',
         'views/menu.xml',
         'report/report.xml',
         'report/customer_invoice_template.xml',
-
+        'report/stock_picking_template.xml',
         'data/data_ir_sequence.xml',
     ],
     # only loaded in demonstration mode

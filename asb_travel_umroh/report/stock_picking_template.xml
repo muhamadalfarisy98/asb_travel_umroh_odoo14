@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+<template id="report_stock_picking_document">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    
+                    <h1 class="text-center"><strong>DELIVERY ORDER</strong></h1>
+                    <h2 > </h2>
+                    <h2 > </h2>
+
+                    <div class="row mt64">
+                        <div class="col-2">
+                           Customer
+                        </div>
+                        <div class="col-5">
+                            : <span t-field="doc.partner_id.name"/>
+                        </div>
+                        <div class="col-2">
+                           No.
+                        </div>
+                        <div class="col-3">
+                            : <span t-field="doc.name"/>
+                        </div>
+                    </div>
+                    <div class="row mt64">
+                        <div class="col-2">
+                           Address
+                        </div>
+                        <div class="col-5">
+                            : <span t-field="doc.partner_id.street"/>
+                        </div>
+                        <div class="col-2">
+                           Date
+                        </div>
+                        <div class="col-3">
+                            : <span t-esc="doc.date_done.strftime('%d %B %Y')"/>
+                        </div>
+                    </div>
+                    <div class="row mt64">
+                        <div class="col-2">
+                            Phone
+                        </div>
+                        <div class="col-3">
+                            : <span t-field="doc.partner_id.phone"/>
+                        </div>
+                    </div>
+
+                    <table class="table table-strip table-border">
+                            <thead>
+                                <tr>
+                                    <th name="th_product" class="text-center" style="border: 2px solid black;"><strong>Product</strong></th>
+                                    <th name="th_qty" class="text-center" style="border: 2px solid black;"><strong>Qty</strong></th>
+                                    <th name="th_uom" class="text-center" style="border: 2px solid black;"><strong>UoM</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="doc.move_ids_without_package" t-as="line">
+                                    <td style="border: 2px solid black;" class="text-left"><span t-field="line.product_id.name"/> </td>
+                                    <td style="border: 2px solid black;" class="text-center"><span t-field="line.quantity_done"/> </td>
+                                    <td style="border: 2px solid black;" class="text-center"><span t-field="line.product_uom"/> </td>
+                                </tr>
+                            </tbody>
+                    </table>
+
+                    <center>
+                        <table width="25%" height="250px" style="border: 2px solid black;">
+                            <tr>
+                                <td width="100%" align="center" height="30">
+                                    <strong>
+                                        Mengetahui
+                                    </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="100px"></td>
+                            </tr>
+                            <tr>
+                                <td align="center" height="30px">
+                                    <strong>
+                                        <span t-esc="doc.env.user.name or 'Administrator' " />
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+
+                </div>
+            </t>   
+        </t>
+    </t>
+</template>
+</odoo>
