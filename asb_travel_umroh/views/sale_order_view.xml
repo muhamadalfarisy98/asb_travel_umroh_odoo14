@@ -8,27 +8,27 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <!-- Add your xpath here -->
-            <xpath expr="//group/field[@name='partner_id']" position="after">
-                <field name="paket_perjalanan_id"/>
-            </xpath>
-            <xpath expr="//page[@name='customer_signature']" position="after">
-                <page string="Manifest" name="manifest_lines">
-                    <field name="paket_peserta_line">
-                        <tree >
-                            <field name="title"/>
-                            <field name="gender"/>
-                            <field name="name_passport"/>
-                            <field name="no_passport"/>
-                            <field name="no_ktp"/>
-                            <field name="birthdate"/>
-                            <field name="place_of_birth"/>
-                            <field name="date_issued"/>
-                            <field name="date_expired"/>
-                            <field name="imigrasi"/>
-                        </tree>
-                    </field>
-                </page>
-            </xpath>
+                <xpath expr="//group/field[@name='partner_id']" position="after">
+                    <field name="paket_perjalanan_id"/>
+                </xpath>
+                <xpath expr="//page[@name='customer_signature']" position="after">
+                    <page string="Manifest" name="manifest_lines">
+                        <field name="paket_peserta_line">
+                            <tree >
+                                <field name="title"/>
+                                <field name="gender"/>
+                                <field name="name_passport"/>
+                                <field name="no_passport"/>
+                                <field name="no_ktp"/>
+                                <field name="birthdate"/>
+                                <field name="place_of_birth"/>
+                                <field name="date_issued"/>
+                                <field name="date_expired"/>
+                                <field name="imigrasi"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
             </field>
         </record>
         
