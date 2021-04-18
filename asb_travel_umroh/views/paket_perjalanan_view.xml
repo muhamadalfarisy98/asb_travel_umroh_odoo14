@@ -184,12 +184,12 @@
                         </group>
                         <group name="scan_doc" string="Scan Document">
                             <group>
-                                <field name="passport"/>
-                                <field name="buku_nikah"/>
+                                <field name="passport" widget="image"/>
+                                <field name="buku_nikah" widget="image"/>
                             </group>
                             <group>
-                                <field name="ktp"/>
-                                <field name="kartu_keluarga"/>
+                                <field name="ktp" widget="image"/>
+                                <field name="kartu_keluarga" widget="image"/>
                             </group>
                         </group>
                     </sheet>
