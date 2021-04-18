@@ -21,7 +21,7 @@ class ReportAccountPaymentPlan(models.AbstractModel):
                         ['Gender', 15],
                         ['TITLE', 16],
                         ['FULL NAME', 20],
-                        ['TEMPAT LAHIR', 24],
+                        ['TEMPAT LAHIR', 28],
                         ['TANGGAL LAHIR', 24],
                         ['NO PASSPORT', 20],
                         ['PASSPORT ISSUED', 20],
@@ -64,7 +64,7 @@ class ReportAccountPaymentPlan(models.AbstractModel):
                         ['No', 12],
                         ['AIRLINES', 15],
                         ['DEPARTURE DATE', 16],
-                        ['DEPARTURE CITY', 24],
+                        ['DEPARTURE CITY', 28],
                         ['ARRIVAL CITY', 24],
         )
         col=2

@@ -163,7 +163,7 @@ class PaketPerjalanan(models.Model):
                 data.append((
                     num,
                     ppl.jamaah_id.gender or '',
-                    ppl.title or '', #2
+                    ppl.title.name or '', #2
                     ppl.jamaah_id.name, #3
                     ppl.place_of_birth, #4
                     ppl.birthdate, #5
