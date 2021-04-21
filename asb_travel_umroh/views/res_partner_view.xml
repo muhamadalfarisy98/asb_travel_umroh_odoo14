@@ -38,7 +38,6 @@
                             <field name="education"/>
                         </group>
                     </group>
-
                     <group name="passport_info" string="Passport Information">
                         <group>
                             <field name="no_passport"/>
@@ -49,7 +48,6 @@
                             <field name="name_passport"/>
                             <field name="date_issued"/>
                         </group>
-
                     </group>
 
                     <group name="scan_doc" string="Scan Document">

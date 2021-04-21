@@ -3,7 +3,7 @@
     <data>
         <!-- Menu ROOT -->
         <menuitem name="Travel Umroh" id="asb_travel_umroh.menu_travel_umroh_root" 
-            web_icon="asb_travel_umroh,static/description/icon.png"/>
+            web_icon="asb_travel_umroh,static/description/umrah.png"/>
 
         <!-- MENU METADATA -->
         <menuitem id="meta_data_categ" name="Meta Data" parent="asb_travel_umroh.menu_travel_umroh_root" 

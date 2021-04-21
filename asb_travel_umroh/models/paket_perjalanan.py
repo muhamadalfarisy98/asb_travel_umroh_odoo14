@@ -1,22 +1,22 @@
 from odoo import api, fields, models
 from odoo.exceptions import UserError,ValidationError
 from datetime import date
+from odoo.tools.profiler import profile
 
 class PaketPerjalanan(models.Model):
     _name = 'paket.perjalanan'
     _description = 'Paket Perjalanan'
 
-    name = fields.Char(string='', required=True, copy=False, readonly=True,
-                            default='New')
+    name = fields.Char(string='', required=True, copy=False, readonly=True, default='New')
     company_id = fields.Many2one('res.company', string='Company', 
         default=lambda self: self.env.user.company_id)
     currency_id = fields.Many2one('res.currency', string='Currency', 
         related='company_id.currency_id')
     departure_date = fields.Date(string='Departure Date',required=True)
     return_date = fields.Date(string='Return Date',required=True)
-    product_tmpl_id = fields.Many2one(comodel_name='mrp.bom', 
+    bom_id = fields.Many2one(comodel_name='mrp.bom', 
         string='Package',required=True)
-    product_id = fields.Many2one(comodel_name='product.template', 
+    product_id = fields.Many2one(comodel_name='product.product', 
         string='Sale',required=True)
     quota = fields.Integer(string='Quota')
     remaining_seats = fields.Integer(string='Remaining Seats',
@@ -39,7 +39,7 @@ class PaketPerjalanan(models.Model):
     amount_total = fields.Monetary(string='Total', store=True, readonly=True, 
         compute='_amount_all',)
     
-    
+    @profile
     @api.model
     def create(self, vals):
         """
@@ -74,13 +74,14 @@ class PaketPerjalanan(models.Model):
         if self.quota<len(self.paket_peserta_line):
             raise ValidationError("Increase min Quota or remove excess Jamaah")
     
-    @api.onchange('product_tmpl_id')
-    def _onchange_product_tmpl_id(self):
+    @profile
+    @api.onchange('bom_id')
+    def _onchange_bom_id(self):
         for r in self:
-            if r.product_tmpl_id:
+            if r.bom_id:
                 # removes all existing (previous) value from list
                 lines=[(5,0,0)]
-                for line in self.product_tmpl_id.bom_line_ids:
+                for line in self.bom_id.bom_line_ids:
                     vals={
                         'product_id':line.product_id.id,
                         'product_qty':line.product_qty
@@ -240,7 +241,7 @@ class PaketAcaraLine(models.Model):
     _name = 'paket.acara.line'
     _description = 'Paket Acara Line'
 
-    name = fields.Char(string='Name')
+    name = fields.Char(string='Name',required=True)
     date = fields.Date(string='Date')
     paket_perjalanan_id = fields.Many2one(comodel_name='paket.perjalanan', 
         string='Paket Perjalanan')
@@ -274,12 +275,12 @@ class HppLine(models.Model):
 class PaketPesertaLine(models.Model):
     _name = 'paket.peserta.line'
     _description = 'Paket Peserta Line'
-    _inherits = {'res.partner': 'jamaah_id'}
+    # _inherits = {'res.partner': 'jamaah_id'}
 
     paket_perjalanan_id = fields.Many2one(comodel_name='paket.perjalanan', string='Paket perjalanan')
     order_id = fields.Many2one(comodel_name='sale.order', string='Sale order')
     jamaah_id = fields.Many2one(comodel_name='res.partner', string='Jamaah',
-        domain="[('is_customer', '=', True)]")
+        domain="[('is_customer', '=', True)]",delegate=True)
     room_type = fields.Selection(string='Room Type', help='Paket kamar',required=True,
         selection=[('quad', 'Quad'), ('double', 'Double'),('triple', 'Triple')],default='quad')
     age = fields.Integer(string='Age',compute='_get_age_jamaah',store=True)

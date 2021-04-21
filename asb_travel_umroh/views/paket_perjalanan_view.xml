@@ -1,6 +1,25 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data>
+        <!-- paket.perjalanan tree view -->
+        <record id="paket_perjalanan_view_tree" model="ir.ui.view">
+            <field name="name">paket.perjalanan.view.tree</field>
+            <field name="model">paket.perjalanan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="departure_date"/>
+                    <field name="return_date"/>
+                    <field name="quota"/>
+                    <field name="quota_progress" widget="progressbar"/>
+                    <field name="amount_total" string="Total Cost"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
         <!-- paket.perjalanan form view -->
         <record id="paket_perjalanan_view_form" model="ir.ui.view">
             <field name="name">Travel Packages</field>
@@ -34,7 +53,7 @@
                                 <field name="product_id"/>
                             </group>
                             <group>
-                                <field name="product_tmpl_id"/>
+                                <field name="bom_id"/>
                             </group>
                         </group>
 
@@ -121,25 +140,6 @@
             </field>
         </record>
 
-        <!-- paket.perjalanan tree view -->
-        <record id="paket_perjalanan_view_tree" model="ir.ui.view">
-            <field name="name">paket.perjalanan.view.tree</field>
-            <field name="model">paket.perjalanan</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <!-- Add your fields here -->
-                    <field name="name"/>
-                    <field name="product_id"/>
-                    <field name="departure_date"/>
-                    <field name="return_date"/>
-                    <field name="quota"/>
-                    <field name="quota_progress" widget="progressbar"/>
-                    <field name="amount_total" string="Total Cost"/>
-                    <field name="state"/>
-                </tree>
-            </field>
-        </record>
-
         <!-- paket.perjalanan action window -->
         <record id="paket_perjalanan_action" model="ir.actions.act_window">
             <field name="name">Travel Packages</field>
@@ -147,7 +147,6 @@
             <field name="res_model">paket.perjalanan</field>
             <field name="view_mode">tree,form</field>
         </record>
-
 
         <!-- paket.peserta.line form view -->
         <record id="paket_peserta_line_view_form" model="ir.ui.view">
