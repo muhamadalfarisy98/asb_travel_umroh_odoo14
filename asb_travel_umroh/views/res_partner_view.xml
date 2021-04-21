@@ -68,8 +68,8 @@
             <field name="name">hotel search</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
-                <!-- <field name="name"/> -->
                 <search string="Search Description">
+                    <field name="name"/>
                     <filter string="Hotel" name="is_hotel" domain="[('is_hotel', '=', True)]"/>
                 </search>
             </field>
@@ -79,8 +79,8 @@
             <field name="name">airline search</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
-                <!-- <field name="name"/> -->
                 <search string="Search Description">
+                    <field name="name"/>
                     <filter string="Airline" name="is_airline" domain="[('is_airline', '=', True)]"/>
                 </search>
             </field>
@@ -90,8 +90,8 @@
             <field name="name">customer search</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
-                <!-- <field name="name"/> -->
                 <search string="Search Description">
+                    <field name="name"/>
                     <filter string="Customer" name="is_customer" domain="[('is_customer', '=', True)]"/>
                 </search>
             </field>

@@ -11,8 +11,6 @@ class SaleOrder(models.Model):
     partner_id = fields.Many2one(comodel_name='res.partner', string='Customer',
         domain="[('is_customer','=',True)]")
     
-
-
     @api.onchange('paket_perjalanan_id')
     def _onchange_paket_perjalanan_id(self):
         for r in self:
@@ -27,12 +25,3 @@ class SaleOrder(models.Model):
                     }
                 lines.append((0,0,vals))
                 r.order_line=lines
-                
-
-class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
-
-    @api.model
-    def create(self,vals):
-        res=super(SaleOrderLine,self).create(vals)
-        return res

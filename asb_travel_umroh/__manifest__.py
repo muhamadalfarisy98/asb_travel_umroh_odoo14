@@ -3,7 +3,7 @@
     'name': "Travel Umroh",
 
     'summary': """
-        Tugas Besar Design Addons for Travel Umroh""",
+        Tugas Akhir Design Addons for Travel Umroh""",
 
     'description': """
         Long description of module's purpose
