@@ -6,8 +6,8 @@ free logo creator : https://spilymp.github.io/ibo/
 # Features
 some extra features are including :
 - Develops XLSX report
-- Develops Sale order pdf report
-- Develoops Inventory pdf report
+- Develops Sale order (SO) pdf report
+- Develoops Delivery order (PO) pdf report
 
 ![1](https://user-images.githubusercontent.com/23287190/117598955-0fd67380-b173-11eb-8b5c-58ae364a0c1c.png)
 ![1](https://user-images.githubusercontent.com/23287190/117599064-4b713d80-b173-11eb-917c-6545c21c4c41.png)
