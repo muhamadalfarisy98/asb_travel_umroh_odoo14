@@ -1,5 +1,5 @@
 # Description
-This project is used for PT. Arkana Solusi Bisnis Final task training. this project is about Travel Umroh management application using Odoo v14 Framework.
+This project is about Travel Umroh management application custom module using Odoo v14 Framework.
 
 free logo creator : https://spilymp.github.io/ibo/
 
